@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miners", "Miners\Miners.csproj", "{F075A1D7-F310-4E6E-BC50-24CD65609B7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miners.Tests", "Miners.Tests\Miners.Tests.csproj", "{7B74BDDB-778B-441E-9EC6-B18D48107876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerServer", "..\MinerServer\MinerServer.csproj", "{B10A26CD-4FAA-433F-A69E-0FE387457704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerServerUnitTests", "MinerServerUnitTests\MinerServerUnitTests.csproj", "{BD0D2DEB-98C8-453B-9096-549AC59D2DD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F075A1D7-F310-4E6E-BC50-24CD65609B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F075A1D7-F310-4E6E-BC50-24CD65609B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F075A1D7-F310-4E6E-BC50-24CD65609B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F075A1D7-F310-4E6E-BC50-24CD65609B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B74BDDB-778B-441E-9EC6-B18D48107876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B74BDDB-778B-441E-9EC6-B18D48107876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B74BDDB-778B-441E-9EC6-B18D48107876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B74BDDB-778B-441E-9EC6-B18D48107876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0D2DEB-98C8-453B-9096-549AC59D2DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0D2DEB-98C8-453B-9096-549AC59D2DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0D2DEB-98C8-453B-9096-549AC59D2DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0D2DEB-98C8-453B-9096-549AC59D2DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
