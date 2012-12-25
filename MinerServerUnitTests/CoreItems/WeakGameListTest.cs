@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MinerServer.CoreItems;
 
@@ -11,15 +11,17 @@ namespace MinerServerUnitTests.CoreItems
         [TestMethod]
         public void ListTest()
         {
-            var list = new WeakGameList<object>();
-            list.Add(new object());
-            list.Add(new object());
-            list.Add(new object());
-            list.Add(new object());
-
+            var list = new WeakGameList<object> { new object(), new object(), new object() };
+            Assert.AreEqual(list.Count(), list.Count);
+            
             GC.Collect();
             GC.WaitForPendingFinalizers();
             GC.Collect();
+
+            list.Trim();
+
+            Assert.AreEqual(list.Count(), 0);
+            Assert.AreEqual(list.Count, 0);
 
         }
     }
