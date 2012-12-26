@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7814F81A-9F39-4F42-9D66-553101C1426D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B10A26CD-4FAA-433F-A69E-0FE387457704}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServerTestApplication</RootNamespace>
-    <AssemblyName>ServerTestApplication</AssemblyName>
+    <RootNamespace>MinerServer</RootNamespace>
+    <AssemblyName>MinerServer</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,14 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CoreItems\GameList.cs" />
+    <Compile Include="CoreItems\LinqHelper.cs" />
+    <Compile Include="CoreItems\MathUtils.cs" />
+    <Compile Include="CoreItems\WeakGameList.cs" />
+    <Compile Include="CoreItems\WeakGameObject.cs" />
+    <Compile Include="CoreGameObjects\GameObject.cs" />
+    <Compile Include="CoreGameObjects\GameContainer.cs" />
+    <Compile Include="MapObjects\GameMap.cs" />
+    <Compile Include="MapObjects\MapCell.cs" />
+    <Compile Include="MapObjects\Point.cs" />
+    <Compile Include="GameObjects\Mine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MinerServer\MinerServer.csproj">
-      <Project>{b10a26cd-4faa-433f-a69e-0fe387457704}</Project>
-      <Name>MinerServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
