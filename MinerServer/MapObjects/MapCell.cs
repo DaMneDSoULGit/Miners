@@ -14,18 +14,18 @@ namespace MinerServer.MapObjects
         private readonly int x;
         private readonly int y;
 
-        private readonly WeakGameList<GameObject> objectInCell;
+        private readonly WeakGameObjectList objectInCell;
 
         public MapCell(byte type, int x, int y)
         {
             this.type = type;
             this.x = x;
             this.y = y;
-            objectInCell = new WeakGameList<GameObject>();
+            objectInCell = new WeakGameObjectList();
             height = 0;
         }
 
-        public WeakGameList<GameObject> ObjectsInCell
+        public WeakGameObjectList ObjectsInCell
         {
             get { return objectInCell; }
         }

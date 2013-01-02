@@ -1,4 +1,5 @@
-﻿using MinerServer.MapObjects;
+﻿using MinerServer.CoreItems;
+using MinerServer.MapObjects;
 
 namespace MinerServer.CoreGameObjects
 {
@@ -15,7 +16,7 @@ namespace MinerServer.CoreGameObjects
     public abstract class GameObject
     {
         private int tick;
-        private readonly GameContainer gameContainer;
+        private readonly WeakObject<GameContainer> container;
         public Point PrevPosition { get; private set; }
 
         public Point Position { get; set; }
@@ -28,6 +29,8 @@ namespace MinerServer.CoreGameObjects
             OnGameObjectTick();
         }
 
+        public int Index { get; private set; }
+
         public abstract int EveryTickNumber { get; }
 
         public abstract void OnGameObjectTick();
@@ -36,15 +39,16 @@ namespace MinerServer.CoreGameObjects
 
         protected GameObject(GameContainer container)
         {
-            gameContainer = container;
-            gameContainer.RegisterObject(this);
+            Index = container.LastGameObjectIndex++;
+            this.container = new WeakObject<GameContainer>(container);
+            this.container.Value.RegisterObject(this);
             Position = Point.EmptyPoint;
             PrevPosition = Point.EmptyPoint;
         }
 
         public void SynhPosition()
         {
-            gameContainer.Map.SetPosition(this, PrevPosition, Position);
+            container.Value.Map.SetPosition(this, PrevPosition, Position);
             PrevPosition = Position;
         }
 
@@ -55,7 +59,7 @@ namespace MinerServer.CoreGameObjects
 
         protected void Delete()
         {
-            gameContainer.UnregisterObject(this);
+            container.Value.UnregisterObject(this);
         }
 
         abstract public GameObjectType GetObjectType { get; }

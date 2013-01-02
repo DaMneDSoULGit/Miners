@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Text;
+using MinerServer.CoreGameObjects;
 
 namespace MinerServer.CoreItems
 {
-    public class WeakGameList<T> : IGameList<T> where T : class
+    public class WeakObjectContainer<T> : IObjectContainer<T> where T : class
     {
-        readonly GameList<WeakGameObject<T>> container = new GameList<WeakGameObject<T>>();
+        readonly DynamicList<WeakObject<T>> container = new DynamicList<WeakObject<T>>();
         public IEnumerator<T> GetEnumerator()
         {
-            return (container.Where(weakGameObject => !weakGameObject.Deleted).Select(
-                weakGameObject => weakGameObject.GetItem)).GetEnumerator();
+            return (container.Select(weakGameObject => weakGameObject.Value)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -23,50 +23,32 @@ namespace MinerServer.CoreItems
 
         public void Add(T item)
         {
-            container.Add(new WeakGameObject<T>(item));
+            container.Add(new WeakObject<T>(item));
         }
 
         public void Clear()
         {
-            container.Invoke(x => x.SetFree());
             container.Clear();
         }
 
         public void Trim()
         {
-            container.Remove(x => x.Deleted);
             container.Trim();
         }
 
         public void Remove(Func<T, bool> condition)
-        {
-            foreach (WeakGameObject<T> weakGameObject in container)
-            {
-                if (!weakGameObject.Deleted && condition(weakGameObject.GetItem))
-                {
-                    weakGameObject.SetFree();
-                }
-            }
+        { 
+            throw new NotImplementedException();
         }
 
         public bool Contains(T item)
         {
-            throw new InvalidOperationException();
-        }
-
-        public void CopyTo(T[] array, int arrayIndex)
-        {
             throw new NotImplementedException();
         }
-
-        public bool Remove(T item)
+        
+        public void Remove(T item)
         {
-            foreach (var weakGameObject in container.Where(weakGameObject => ReferenceEquals(weakGameObject, item)))
-            {
-                weakGameObject.SetFree();
-                return true;
-            }
-            throw new InstanceNotFoundException();
+            throw new NotImplementedException();
         }
 
         public override string ToString()
@@ -82,10 +64,12 @@ namespace MinerServer.CoreItems
 
         public int Count
         {
-            get { return container.Count(x => !x.Deleted); }
+            get { return container.Count(); }
         }
 
         public bool IsReadOnly { get; private set; }
-
     }
+
+    public class WeakGameObjectList : WeakObjectContainer<GameObject>
+    { }
 }

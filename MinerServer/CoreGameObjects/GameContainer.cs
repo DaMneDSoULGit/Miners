@@ -7,11 +7,13 @@ namespace MinerServer.CoreGameObjects
 {
     public class GameContainer
     {
-        private readonly GameList<GameObject> mainContainer = new GameList<GameObject>();
+        private readonly DynamicList<GameObject> mainContainer = new DynamicList<GameObject>();
 
         public readonly GameMap Map = new GameMap();
 
-        private readonly WeakGameList<Mine> mineContainer = new WeakGameList<Mine>();
+        public int LastGameObjectIndex;
+
+        private readonly WeakObjectContainer<Mine> mineContainer = new WeakObjectContainer<Mine>();
 
         public void RegisterObject(GameObject gameObject)
         {

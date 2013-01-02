@@ -10,17 +10,6 @@ namespace ServerTestApplication
     {
         static void Main()
         {
-            var list = new WeakGameList<object> { new object(), new object(), new object() };
-            Console.WriteLine(list);
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-
-            list.Trim();
-            
-            Console.WriteLine(list);
-            Console.ReadLine();
         }
     }
 }

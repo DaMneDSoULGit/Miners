@@ -6,15 +6,17 @@ using System.Text;
 
 namespace MinerServer.CoreItems
 {
-    public interface IGameList<T> : ICollection<T>
+    public interface IObjectContainer<T> : IEnumerable<T>
     {
+        void Add(T item);
+        bool Contains(T item);
         void Trim();
-
         void Remove(Func<T, bool> condition);
-
+        void Remove(T item);
+        void Clear();
     }
 
-    public class GameList<T> : IGameList<T>
+    public class DynamicList<T> : IObjectContainer<T>
     {
         private ListComponent<T> firstItem;
 
@@ -63,13 +65,11 @@ namespace MinerServer.CoreItems
             firstItem = firstItem == null
                 ? new ListComponent<T>(item)
                 : new ListComponent<T>(item) { NextElement = firstItem };
-            Count++;
         }
 
         public void Clear()
         {
             firstItem = null;
-            Count = 0;
         }
 
         public bool Contains(T item)
@@ -83,18 +83,12 @@ namespace MinerServer.CoreItems
             return false;
         }
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Trim()
         {
             ListComponent<T> iterator = firstItem;
             while (iterator != null && iterator.Removed)
             {
                 iterator = firstItem = iterator.NextElement;
-                Count--;
             }
 
             iterator = firstItem;
@@ -107,7 +101,6 @@ namespace MinerServer.CoreItems
                 if (iterator.Removed)
                 {
                     iterator = prev.NextElement = iterator.NextElement;
-                    Count--;
                 }
                 else
                 {
@@ -117,7 +110,7 @@ namespace MinerServer.CoreItems
             }
         }
 
-        public bool Remove(T item)
+        public void Remove(T item)
         {
             ListComponent<T> iterator = firstItem;
             while (iterator != null)
@@ -125,12 +118,9 @@ namespace MinerServer.CoreItems
                 if (ReferenceEquals(iterator.Item, item))
                 {
                     iterator.Remove();
-                    Count--;
-                    return true;
                 }
                 iterator = iterator.NextElement;
             }
-            return false;
         }
 
         public void Remove(Func<T, bool> condition)
@@ -141,7 +131,6 @@ namespace MinerServer.CoreItems
                 if (condition(iterator.Item))
                 {
                     iterator.Remove();
-                    Count--;
                 }
                 iterator = iterator.NextElement;
             }
@@ -150,7 +139,6 @@ namespace MinerServer.CoreItems
         public override string ToString()
         {
             StringBuilder stringbuilder = new StringBuilder();
-            stringbuilder.AppendLine(string.Format("Items count:{0}", Count));
             foreach (T item in this)
             {
                 stringbuilder.AppendLine(item.ToString());
@@ -158,7 +146,5 @@ namespace MinerServer.CoreItems
             return stringbuilder.ToString();
         }
 
-        public int Count { get; private set; }
-        public bool IsReadOnly { get; private set; }
     }
 }

@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoreItems\GameList.cs" />
+    <Compile Include="CoreGameObjects\VisibilityMap.cs" />
+    <Compile Include="CoreItems\DynamicList.cs" />
+    <Compile Include="CoreItems\HierarhyContainer.cs" />
     <Compile Include="CoreItems\LinqHelper.cs" />
     <Compile Include="CoreItems\MathUtils.cs" />
     <Compile Include="CoreItems\WeakGameList.cs" />
-    <Compile Include="CoreItems\WeakGameObject.cs" />
+    <Compile Include="CoreItems\WeakObject.cs" />
     <Compile Include="CoreGameObjects\GameObject.cs" />
     <Compile Include="CoreGameObjects\GameContainer.cs" />
     <Compile Include="MapObjects\GameMap.cs" />
