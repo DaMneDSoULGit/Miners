@@ -1,7 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using MinerServer.CoreGameObjects;
+
+#endregion
 
 namespace MinerServer.MapObjects
 {
@@ -18,7 +21,7 @@ namespace MinerServer.MapObjects
         {
             xSize = xSizeInt;
             ySize = ySizeInt;
-            map = new MapCell[xSizeInt, ySizeInt];
+            map = new MapCell[xSizeInt,ySizeInt];
             for (int i = 0; i < xSizeInt; i++)
             {
                 for (int j = 0; j < ySizeInt; j++)
@@ -30,8 +33,8 @@ namespace MinerServer.MapObjects
 
         private MapCell GetCellByPoint(Point point)
         {
-            int x = (int)(point.X / CellSize);
-            int y = (int)(point.Y / CellSize);
+            int x = (int) (point.X/CellSize);
+            int y = (int) (point.Y/CellSize);
             return map[x, y];
         }
 
@@ -56,9 +59,9 @@ namespace MinerServer.MapObjects
 
         public IEnumerable<MapCell> CellsInRange(Point point, double range)
         {
-            int px = (int)(point.X / CellSize);
-            int py = (int)(point.Y / CellSize);
-            int step = ((int)(range / CellSize)) + 1;
+            int px = (int) (point.X/CellSize);
+            int py = (int) (point.Y/CellSize);
+            int step = ((int) (range/CellSize)) + 1;
 
             int startx = Math.Max(0, px - step);
             int endx = Math.Min(xSize, px + step);
@@ -74,16 +77,15 @@ namespace MinerServer.MapObjects
             }
         }
 
-        public void RemoveFromMap(GameObject obj)
-        {
-            GetCellByPoint(obj.Position).ObjectsInCell.Remove(obj);
-        }
+        //public void RemoveFromMap(GameObject obj)
+        //{
+        //    GetCellByPoint(obj.Position).ObjectsInCell.Remove(obj);
+        //}
 
-        public IEnumerable<GameObject> ObjectsInRange(Point point, double range)
-        {
-            IEnumerable<MapCell> cells = CellsInRange(point, range);
-            return cells.SelectMany(x => x.ObjectsInCell).Where(x => Point.IsInRange(x.Position, point, range));
-        }
-
+        //public IEnumerable<GameObject> ObjectsInRange(Point point, double range)
+        //{
+        //    IEnumerable<MapCell> cells = CellsInRange(point, range);
+        //    return cells.SelectMany(x => x.ObjectsInCell).Where(x => Point.IsInRange(x.Position, point, range));
+        //}
     }
 }

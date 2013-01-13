@@ -1,45 +1,18 @@
-﻿using System;
+﻿#region
+
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MinerServer.CoreItems;
+
+#endregion
 
 namespace MinerServer.CoreGameObjects
 {
-    class VisibilityMap
+    internal class VisibilityMap
     {
-        class VisibilityLine
-        {
-            public WeakObject<GameObject> Owner { get; private set; }
-            private int index = -1;
-            private BitArray visibilityMap = new BitArray(100);
-
-            public void Initialize(GameObject obj)
-            {
-                Owner = new WeakObject<GameObject>(obj);
-                index = obj.Index;
-            }
-
-            private bool deleted;
-
-            public void Delete()
-            {
-                deleted = true;
-            }
-            bool IsValid
-            {
-                get { return !deleted && Owner != null && index != -1; }
-            }
-        }
-
-        private int Capacity { get; set; }
-
-        private int LastIterator { get; set; }
-
         private readonly VisibilityLine[] gameVisibilityMap;
 
-        VisibilityMap()
+        private VisibilityMap()
         {
             gameVisibilityMap = new VisibilityLine[100];
             for (int i = 0; i < 100; i++)
@@ -48,6 +21,10 @@ namespace MinerServer.CoreGameObjects
             }
             Capacity = 100;
         }
+
+        private int Capacity { get; set; }
+
+        private int LastIterator { get; set; }
 
         public void AddObject(GameObject obj)
         {
@@ -63,7 +40,6 @@ namespace MinerServer.CoreGameObjects
 
         private void Expand()
         {
-            
         }
 
         public void Remove(GameObject obj)
@@ -73,8 +49,34 @@ namespace MinerServer.CoreGameObjects
 
         public void Trim()
         {
-
         }
 
+        #region Nested type: VisibilityLine
+
+        private class VisibilityLine
+        {
+            private bool deleted;
+            private int index = -1;
+            private BitArray visibilityMap = new BitArray(100);
+            public WeakObject<GameObject> Owner { get; private set; }
+
+            private bool IsValid
+            {
+                get { return !deleted && Owner != null && index != -1; }
+            }
+
+            public void Initialize(GameObject obj)
+            {
+                Owner = new WeakObject<GameObject>(obj);
+                index = obj.Index;
+            }
+
+            public void Delete()
+            {
+                deleted = true;
+            }
+        }
+
+        #endregion
     }
 }

@@ -1,19 +1,17 @@
-﻿using System;
-using MinerServer.CoreItems;
+﻿#region
+
+using System;
+using MinerServer.Helpers;
+
+#endregion
 
 namespace MinerServer.MapObjects
 {
     public struct Point
     {
-        public bool Equals(Point other)
-        {
-            return MathUtils.DoubleEquals(X, other.X) && MathUtils.DoubleEquals(Y, other.Y);
-        }
-
+        public static Point EmptyPoint = new Point(-1, -1);
         public double X;
         public double Y;
-
-        public static Point EmptyPoint = new Point(-1, -1);
 
         public Point(double x, double y)
         {
@@ -24,6 +22,11 @@ namespace MinerServer.MapObjects
         public bool IsEmpty
         {
             get { return Equals(EmptyPoint); }
+        }
+
+        public bool Equals(Point other)
+        {
+            return MathHelper.DoubleEquals(X, other.X) && MathHelper.DoubleEquals(Y, other.Y);
         }
 
         public static double Range(Point point1, Point point2)
@@ -42,9 +45,5 @@ namespace MinerServer.MapObjects
             if (Math.Abs(point1.Y - point2.Y) >= range) return true;
             return Range(point1, point2) >= range;
         }
-
     }
-
-
-
 }

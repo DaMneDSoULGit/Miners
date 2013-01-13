@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTestApplication", "Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerServer", "MinerServer\MinerServer.csproj", "{B10A26CD-4FAA-433F-A69E-0FE387457704}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineServerTestProject", "MineServerTestProject\MineServerTestProject.csproj", "{107E34FA-6334-4D8F-8B9B-CCAECA4E4E23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10A26CD-4FAA-433F-A69E-0FE387457704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107E34FA-6334-4D8F-8B9B-CCAECA4E4E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107E34FA-6334-4D8F-8B9B-CCAECA4E4E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107E34FA-6334-4D8F-8B9B-CCAECA4E4E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107E34FA-6334-4D8F-8B9B-CCAECA4E4E23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

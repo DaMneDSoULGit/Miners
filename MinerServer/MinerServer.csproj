@@ -40,14 +40,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreGameObjects\VisibilityMap.cs" />
+    <Compile Include="CoreItems\ArrayBasicList.cs" />
     <Compile Include="CoreItems\DynamicList.cs" />
-    <Compile Include="CoreItems\HierarhyContainer.cs" />
-    <Compile Include="CoreItems\LinqHelper.cs" />
-    <Compile Include="CoreItems\MathUtils.cs" />
+    <Compile Include="CoreItems\ChildBase.cs" />
+    <Compile Include="CoreItems\IObjectContainer.cs" />
+    <Compile Include="CoreItems\IParent.cs" />
+    <Compile Include="CoreItems\Position.cs" />
+    <Compile Include="CoreItems\StateSaver.cs" />
     <Compile Include="CoreItems\WeakGameList.cs" />
     <Compile Include="CoreItems\WeakObject.cs" />
     <Compile Include="CoreGameObjects\GameObject.cs" />
     <Compile Include="CoreGameObjects\GameContainer.cs" />
+    <Compile Include="Helpers\CommonHelper.cs" />
+    <Compile Include="Helpers\DebugHelper.cs" />
+    <Compile Include="Helpers\LinqHelper.cs" />
+    <Compile Include="Helpers\MathHelper.cs" />
     <Compile Include="MapObjects\GameMap.cs" />
     <Compile Include="MapObjects\MapCell.cs" />
     <Compile Include="MapObjects\Point.cs" />

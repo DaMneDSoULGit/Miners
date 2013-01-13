@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace MinerServer.CoreItems
 {
@@ -16,8 +17,7 @@ namespace MinerServer.CoreItems
 
         public T Value
         {
-            get { return (T)reference.Target; }
+            get { return (T) reference.Target; }
         }
-
     }
 }

@@ -1,16 +1,29 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management.Instrumentation;
 using System.Text;
 using MinerServer.CoreGameObjects;
+
+#endregion
 
 namespace MinerServer.CoreItems
 {
     public class WeakObjectContainer<T> : IObjectContainer<T> where T : class
     {
-        readonly DynamicList<WeakObject<T>> container = new DynamicList<WeakObject<T>>();
+        private readonly DynamicList<WeakObject<T>> container = new DynamicList<WeakObject<T>>();
+
+        public int Count
+        {
+            get { return container.Count(); }
+        }
+
+        public bool IsReadOnly { get; private set; }
+
+        #region IObjectContainer<T> Members
+
         public IEnumerator<T> GetEnumerator()
         {
             return (container.Select(weakGameObject => weakGameObject.Value)).GetEnumerator();
@@ -37,7 +50,7 @@ namespace MinerServer.CoreItems
         }
 
         public void Remove(Func<T, bool> condition)
-        { 
+        {
             throw new NotImplementedException();
         }
 
@@ -45,11 +58,13 @@ namespace MinerServer.CoreItems
         {
             throw new NotImplementedException();
         }
-        
+
         public void Remove(T item)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
 
         public override string ToString()
         {
@@ -61,15 +76,9 @@ namespace MinerServer.CoreItems
             }
             return builder.ToString();
         }
-
-        public int Count
-        {
-            get { return container.Count(); }
-        }
-
-        public bool IsReadOnly { get; private set; }
     }
 
     public class WeakGameObjectList : WeakObjectContainer<GameObject>
-    { }
+    {
+    }
 }

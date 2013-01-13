@@ -1,46 +1,19 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Management.Instrumentation;
+
+#endregion
 
 namespace MinerServer.CoreItems
 {
-    public interface IObjectContainer<T> : IEnumerable<T>
-    {
-        void Add(T item);
-        bool Contains(T item);
-        void Trim();
-        void Remove(Func<T, bool> condition);
-        void Remove(T item);
-        void Clear();
-    }
-
     public class DynamicList<T> : IObjectContainer<T>
     {
         private ListComponent<T> firstItem;
 
-        class ListComponent<TItem>
-        {
-            private readonly TItem listItem;
-            public ListComponent<TItem> NextElement;
-            public bool Removed { get; private set; }
-
-            public void Remove()
-            {
-                Removed = true;
-            }
-
-            public TItem Item
-            {
-                get { return listItem; }
-            }
-
-            public ListComponent(TItem item)
-            {
-                listItem = item;
-            }
-        }
+        #region IObjectContainer<T> Members
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -63,8 +36,8 @@ namespace MinerServer.CoreItems
         public void Add(T item)
         {
             firstItem = firstItem == null
-                ? new ListComponent<T>(item)
-                : new ListComponent<T>(item) { NextElement = firstItem };
+                            ? new ListComponent<T>(item)
+                            : new ListComponent<T>(item) {NextElement = firstItem};
         }
 
         public void Clear()
@@ -118,9 +91,11 @@ namespace MinerServer.CoreItems
                 if (ReferenceEquals(iterator.Item, item))
                 {
                     iterator.Remove();
+                    return;
                 }
                 iterator = iterator.NextElement;
             }
+            throw new InstanceNotFoundException();
         }
 
         public void Remove(Func<T, bool> condition)
@@ -136,15 +111,43 @@ namespace MinerServer.CoreItems
             }
         }
 
-        public override string ToString()
+        #endregion
+
+        #region Nested type: ListComponent
+
+        private class ListComponent<TItem>
         {
-            StringBuilder stringbuilder = new StringBuilder();
-            foreach (T item in this)
+            private readonly TItem listItem;
+            public ListComponent<TItem> NextElement;
+
+            public ListComponent(TItem item)
             {
-                stringbuilder.AppendLine(item.ToString());
+                listItem = item;
             }
-            return stringbuilder.ToString();
+
+            public bool Removed { get; private set; }
+
+            public TItem Item
+            {
+                get { return listItem; }
+            }
+
+            public void Remove()
+            {
+                Removed = true;
+            }
         }
 
+        #endregion
+
+        //public override string ToString()
+        //{
+        //    StringBuilder stringbuilder = new StringBuilder();
+        //    foreach (T item in this)
+        //    {
+        //        stringbuilder.AppendLine(item.ToString());
+        //    }
+        //    return stringbuilder.ToString();
+        //}
     }
 }

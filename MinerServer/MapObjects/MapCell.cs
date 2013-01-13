@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MinerServer.CoreGameObjects;
+﻿#region
+
 using MinerServer.CoreItems;
+
+#endregion
 
 namespace MinerServer.MapObjects
 {
     public class MapCell
     {
-        private byte type;
-        private byte height;
+        private readonly WeakGameObjectList objectInCell;
         private readonly int x;
         private readonly int y;
-
-        private readonly WeakGameObjectList objectInCell;
+        private byte height;
+        private byte type;
 
         public MapCell(byte type, int x, int y)
         {

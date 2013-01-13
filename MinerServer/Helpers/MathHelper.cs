@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#region
 
-namespace MinerServer.CoreItems
+using System;
+
+#endregion
+
+namespace MinerServer.Helpers
 {
-    class MathUtils
+    internal class MathHelper
     {
         private const double Epsilon = 0.0001;
 
