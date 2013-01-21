@@ -1,0 +1,75 @@
+# Game class for working with canvas context
+# Mb for something else
+class Game
+	self = []
+
+	constructor: (canvasElementId)->
+		self = @
+		canvas = document.getElementById(canvasElementId)
+		@context = canvas.getContext("2d")
+
+	setMap: (heightMap)->
+		@map = new Map(heightMap)
+
+	setGameTimer: (@gameTimer)->
+
+	drawMap: (@executionContext)->
+		console.log Map.tilesLoadedCount
+		console.log self.map.tileDictionary.length
+		if(Map.tilesLoadedCount != self.map.tileDictionary.length)
+	        clearInterval(@gameTimer)
+	        self.map.drawMap()
+			console.log "game draw map"
+			console.log self.map
+			console.log Map.tilesLoadedCount
+
+	# Nested class map
+	# Class for working with map
+	class Map
+		
+		@tilesLoadedCount: 0
+		@heightMap
+
+		constructor: (heightMap)->
+			@tileDictionary = ["res/img/boxLvl0.png","res/img/boxLvl1.png","res/img/boxLvl2.png"]
+			@tileImages = new Array()
+			Map.heightMap = heightMap
+
+		# Create image objects from dictionary
+		loadImg: -> 
+			for index in [0...@tileDictionary.length]
+				@tileImages[index] = new Image()
+				@tileImages[index].src = @tileDictionary[index]
+				@tileImages[index].onload = ->
+					Map.tilesLoadedCount++
+					console.log Map.tilesLoadedCount
+
+		# Draw map on the canvas
+		drawMap: -> 
+			tileHeight = 18
+			tileWidth = 50
+			mapX = 200
+			mapY = 20
+
+			for indexX in [0...Map.heightMap.length]
+				for indexY in [0...Map.heightMap[indexX].length]
+					drawTile = Map.heightMap[indexX][indexY]
+					xPos = (indexX - indexY) *  tileWidth + mapX
+					yPos = (indexX + indexY) * tileHeight/2 + mapY
+					self.context.drawImage(tileImages[drawTile], xPos, yPos)
+
+
+main = ->
+	game = new Game("gameScreen")
+	heightMap = [
+		[0,0,0,0]
+		[0,0,0,0]
+		[0,0,0,0]
+		[0,0,0,0]
+	]
+	game.setMap(heightMap)
+	game.map.loadImg()
+	game.setGameTimer = setInterval(game.drawMap(), 100)
+
+	
+main()

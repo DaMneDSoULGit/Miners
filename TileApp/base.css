@@ -1,0 +1,18 @@
+html, body {
+  /*width:  100%;*/
+  /*height: 100%;*/
+  margin: 0px;
+}
+
+body {
+	background-color: rgb(128, 128, 128);
+}
+
+canvas {
+	/*border: 1px solid rbga(242, 198, 65, 0.1);*/
+	/*magin: 50px auto 0 auto;*/
+	/*display: block;*/
+	/*width: 100%;*/
+	/*height: 100%;*/
+	background-color: #77CCAA;
+}
