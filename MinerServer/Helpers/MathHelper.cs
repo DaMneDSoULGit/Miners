@@ -6,7 +6,7 @@ using System;
 
 namespace MinerServer.Helpers
 {
-    internal class MathHelper
+    public class MathHelper
     {
         private const double Epsilon = 0.0001;
 

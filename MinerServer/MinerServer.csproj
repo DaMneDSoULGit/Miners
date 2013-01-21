@@ -45,8 +45,8 @@
     <Compile Include="CoreItems\ChildBase.cs" />
     <Compile Include="CoreItems\IObjectContainer.cs" />
     <Compile Include="CoreItems\IParent.cs" />
-    <Compile Include="CoreItems\Position.cs" />
-    <Compile Include="CoreItems\StateSaver.cs" />
+    <Compile Include="CoreItems\Point.cs" />
+    <Compile Include="CoreItems\Vector.cs" />
     <Compile Include="CoreItems\WeakGameList.cs" />
     <Compile Include="CoreItems\WeakObject.cs" />
     <Compile Include="CoreGameObjects\GameObject.cs" />

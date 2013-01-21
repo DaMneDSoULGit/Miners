@@ -12,12 +12,19 @@ namespace MineServerTestProject
         [TestMethod]
         public void PositionTest()
         {
-            var pos = new Position();
-            Assert.IsFalse(pos.HasChanges);
-            pos.SetPosition(5, 6);
-            Assert.IsTrue(pos.HasChanges);
+            var pos = Point.FromXY(5, 6);
             Assert.AreEqual(5, pos.X, 0.000001);
             Assert.AreEqual(6, pos.Y, 0.000001);
+        }
+
+        [TestMethod]
+        public void VectorTest()
+        {
+            var po1 = Point.FromXY(5, 6);
+            var po2 = Point.FromXY(6, 5);
+            var vect = po1 - po2;
+            Assert.IsTrue(po2.Equals(po1 - vect));
+            Assert.AreEqual(vect.Lenght, Math.Sqrt(2), 0.0001);
         }
 
         class TestParent : IParent<TestChild>
