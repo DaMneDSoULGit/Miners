@@ -16,4 +16,13 @@ namespace MinerServer.CoreItems
         void Remove(T item);
         void Clear();
     }
+
+    public class Container
+    {
+        public static IObjectContainer<T> CreateContainer<T>()
+        {
+            return new DynamicList<T>();
+        }
+    }
+
 }

@@ -23,8 +23,13 @@ namespace MineServerTestProject
             var po1 = Point.FromXY(5, 6);
             var po2 = Point.FromXY(6, 5);
             var vect = po1 - po2;
-            Assert.IsTrue(po2.Equals(po1 - vect));
-            Assert.AreEqual(vect.Lenght, Math.Sqrt(2), 0.0001);
+            Assert.IsTrue(po2 == po1 - vect);
+
+            var vect2 = Vector.FromAngle(90);
+            Assert.IsTrue(vect2 == Vector.FromXY(1, 0));
+            vect2 = Vector.FromAngle(180);
+            Assert.IsTrue(vect2 == Vector.FromXY(0, 1));
+
         }
 
         class TestParent : IParent<TestChild>

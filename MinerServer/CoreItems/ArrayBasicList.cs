@@ -60,6 +60,7 @@ namespace MinerServer.CoreItems
 
         public void Trim()
         {
+            throw new NotImplementedException();
         }
 
         public void Remove(Func<T, bool> condition)

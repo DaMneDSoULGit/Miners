@@ -34,46 +34,23 @@ namespace ServerTestApplication
     {
         static void Main()
         {
-            Test(new ArrayBasicList<TestObject>());
-            Test(new DynamicList<TestObject>());
+            List<Vector> vectors = new List<Vector>
+                                       {
+                                           Vector.FromAngle(0),
+                                           Vector.FromAngle(45),
+                                           Vector.FromAngle(90),
+                                           Vector.FromAngle(120),
+                                           Vector.FromAngle(180),
+                                           Vector.FromAngle(270),
+                                           Vector.FromAngle(360),
+
+                                       };
+
+            vectors.ForEach(x=>Console.WriteLine(x));
             Console.ReadLine();
         }
 
-        private static void Test(IObjectContainer<TestObject> test)
-        {
-            IObjectContainer<TestObject> dl = test;
-
-            TestObject[] randoms = new TestObject[100];
-
-            for (int i = 0; i < randoms.GetLength(0); i++)
-            {
-                randoms[i] = new TestObject("sadsd" + i.ToString());
-            }
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-            DebugHelper.CheckTimeSpan(() =>
-                                          {
-                                              for (int j = 0; j < 10000; j++)
-                                              {
-                                                  for (int i = 0; i < 98; i++)
-                                                  {
-                                                      dl.Add(randoms[i]);
-                                                  }
-
-                                                  for (int i = 0; i < 98; i++)
-                                                  {
-                                                      dl.Remove(randoms[i]);
-                                                  }
-                                                  dl.Trim();
-                                              }
-                                          }, x =>
-                                                 {
-                                                     Console.WriteLine(dl.ToString());
-                                                     Console.WriteLine(x.ToString());
-                                                 });
-
-        }
+            
     }
 
     internal class TestObject
